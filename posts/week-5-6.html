@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/stylesheets/post.css" />
+  <title>Richard Ton's Blog</title>
+</head>
+<body>
+  <h1><a id="home" href="/">Home</a></h1>
+  <h3 id="week">February 3 - February 16</h3>
+  <div id="post">
+    <p>
+    This post is a combination of week 5 and week 6 since I missed a post during
+    the code sprint.
+    </p>
+    <p>
+    In these two weeks I made some necessary tweaks to the Talk Editor UI after
+    discussing the requirements with the mentors. The most noticeable difference
+    is that the 'Add New Talk' button is now at the top of the interface next to
+    the 'Export' and 'Remove' buttons. In addition, selecting the 'Add New Talk'
+    button will create a new talk in the table. Unfortunately, this change in
+    functionality led to some complications, which I discovered during the
+    code sprint.
+    </p>
+    <p>
+    To elaborate, the way editing a presentation currently works is that a talk is
+    selected in the table, and then a field must be selected while the talk in the
+    table is still selected. Once the field is modified, the only way to save the
+    change is to either press 'Return' on the keyboard, or to unassign the focus
+    from the modified field (which can be done by pressing 'Tab' or simply
+    clicking elsewhere on the screen). The problem with this is that when either
+    of these actions are performed, the desired talk in the table is unselected,
+    which means the user must reselect the talk every time they want to modify
+    another field.
+    </p>
+    <p>
+    I have looked into a few ways to modify this behaviour.
+    </p>
+    <p>
+    My first attempt was to connect each field to an 'editingFinished' signal, which
+    is supposed to recognize a change in focus or when 'Return' is pressed. I
+    set it up so that each time the signal was called the application would reselect
+    the row. This worked well until I tested it using 'Return'. Pressing 'Return'
+    would discard my change and refill the field with the previous value, which
+    was strange considering the signal description said it would handle the case.
+    </p>
+    <p>
+    My second attempt was to look into modifying the actual behaviour of the QTableView,
+    which was recommended to me by one of the mentors. I found an attribute called
+    tabKeyNavigation, which enables the use of 'Tab' to traverse the table. However,
+    even after disabling it, the original behaviour persisted.
+    </p>
+    <p>
+    I also started taking a look at the Recording Tool so I can begin refactoring
+    it as required for issue #444, and I completed my Project Proposal, although
+    much of it is likely subject to change.
+    </p>
+    <p>
+    This coming week I'll be thinking of ways to address the Talk Editor UI problem,
+    and figuring out the changes I need to make to the Recording Tool.
+    </p>
+  </div>
+</body>
+</html>
