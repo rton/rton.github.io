@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/stylesheets/post.css" />
+  <title>Richard Ton's Blog</title>
+</head>
+<body>
+  <h1><a id="home" href="/">Home</a></h1>
+  <h3 id="week">February 17 - February 23</h3>
+  <div id="post">
+    <p>
+    This week I found a way to allow modifications to be made to talks that follows the
+	requirements, and I took a look at the Recording Tool code to figure out where changes 
+	will need to be made for the refactor. 
+    </p>
+    <p>
+    Here's a quick explanation of the changes that've been made to the Talk Editor:
+    </p>
+    <p>
+    I found that the reason talks were being unselected was because the QDataWidgetMapper was
+    submitting the form everytime a field lost focus. This is a default setting for 
+    QDataWidgetMapper objects, so I changed the submit policy to 'Manual'. The requirement,
+    as suggested by the mentors, was to make changes effective some time (3 to 5 seconds)
+    after the last change was made to any field. To do this, I connected textChanged(), 
+    timeChanged() and dateChanged() signals to a function that would start a timer. When the 
+    timer reached 0, the timer would emit a timeout() signal and call the database update_presentation
+    functionfunction. 
+    </p>
+    <p>
+    One additional thing to note is that the textChanged(), timeChanged() and dateChanged() signals
+    need to be blocked whenever a talk is added, selected, or updated. The reason for this is that
+    these events modify the input fields by either filling them with existing metadata or whitespace,
+    which naturally emit these signals. And the end of these events, the signals are unblocked.
+    </p>
+    <p>
+    For the feature to record straight to a file, one of the mentors suggested I look at the
+    command line option that allows for that. I found it was calling a function in the RecordController
+    class, which will be extremely useful for the necessary changes. One of the mentors also 
+    suggested that the Recording Tool should record straight to file if no talk is selected, 
+    then prompt the user for a file name when the recording is complete. For now, 
+    I think most of the changes I make will be to the load_backend() and record() functions 
+    of the RecordingApp class.
+    </p>
+    <p>
+    For the coming week, I'll be finishing up the Talk Editor UI changes (namely a prompt to
+    notify the user if there are talks with empty titles in the database), and starting changes
+    for the Recording Tool backend.
+    </p>
+  </div>
+</body>
+</html>
