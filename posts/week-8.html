@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/stylesheets/post.css" />
+  <title>Richard Ton's Blog</title>
+</head>
+<body>
+  <h1><a id="home" href="/">Home</a></h1>
+  <h3 id="week">February 24 - March 2</h3>
+  <div id="post">
+    <p>
+    This week I made some more changes to the Talk Editor UI. I added a prompt that appears when
+    the user attempts to close the editor while there are untitled talks in the database. They
+    are given the option to continue closing, in which case they'll lose the untitled talks, or
+    cancel closing. This caused a bit of trouble during unit testing since the test attempts to
+    close the editor while an untitled talk is present, and does not provide a response when
+    the prompt appears. 
+    </p>
+    <p>
+    On that note, I tried to close the prompt in the unit test by triggering a key click event
+    for 'Y', which would answer 'Yes' to the prompt to continue closing. However, no lines 
+    following the editor actionExit() trigger were being called. I think this may be due to the
+    prompt locking the main event loop. To work around this, I added a single shot timer that
+    would start before the actionExit() trigger, and would last 10 ms. After the timer had
+    finished, it would call a function to trigger the key click event I intended on using 
+    originally. This worked, and everything passed successfully. I'll definitely need to write
+    more unit tests in the future for all the other changes I've made to the UI.
+    </p>
+    <p>
+    In addition, I started refactoring the Recording Tool logic to accept a filename.
+    I made it so that if no talk is selected, it uses a default filename instead. I plan to 
+    give the user the option to edit this filename once they've completed their recording.
+    </p>
+    <p>
+    The last thing I did was move a whole bunch of commits from the #427 issue to a new issue
+    I opened that seems more related to the changes I've made. The mentors helped me with this,
+    particularly by suggesting cherry-picking and how to format my commits from now on into a 
+    single one using rebase and amend.
+    </p>
+  </div>
+</body>
+</html>
