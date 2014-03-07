@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/stylesheets/post.css" />
+  <title>Richard Ton's Blog</title>
+</head>
+<body>
+  <h1><a id="home" href="/">Home</a></h1>
+  <h3 id="week">February 3 - March 9</h3>
+  <div id="post">
+    <p>
+    This week I split up one of my PRs (#495) into several smaller ones (#502, #509), with a few
+    more to come. Once that's complete, I'll get rid of the unrelated changes in #495. 
+    </p>
+    <p>
+    In addition, I made the final changes to my PR for issue #427, and they were finally merged 
+    to the main branch. I also opened a new issue (#501) as requested by one of the mentors, 
+    which is related to issue #427. If I have time, I'd like to work on it, especially since it
+    addresses a similar issue I found in our new approach to editing talks.
+    </p>
+    <p>
+    I fixed up my change for the Recording Tool when a presentation is selected - I wasn't
+    assigning a value for the filename parameter. I also created a new menubar option to record
+    straight to file, which worked; however, this action isn't reflected in the actual GUI.
+    I'd like to find a way to have the GUI react the same way as if the 'Prepare to Record' 
+    button was being selected, then have a window appear when the recording is stopped asking
+    the user for a filename. That will be part of next week's task.
+    </p>
+  </div>
+</body>
+</html>
