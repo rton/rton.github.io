@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/stylesheets/post.css" />
+  <title>Richard Ton's Blog</title>
+</head>
+<body>
+  <h1><a id="home" href="/">Home</a></h1>
+  <h3 id="week">March 10 - March 16</h3>
+  <div id="post">
+    <p>
+    This week most of my work was towards the Talk Editor UI. I implemented the change allowing
+    changes to talks to take effect after 3 seconds of the last change, but the result was not
+    what the mentors were looking for. After some discussion, it was decided that the Save Talk
+    button was to be used for saving changes to existing talks, and clicking the Add Talk
+    button would open a popup containing an instance of TalkDetailsWidget for the user to fill
+    out and submit. Submission would create a new talk in the db, which would appear in the table,
+    while cancelling would discard the new talk.
+    </p>
+    <p>
+    I opened a PR related to allowing the Save Button to be used for existing talks, and I
+    attempted to create the popup for adding new talks. From what I've seen so far, the Talk Editor
+    cannot handle signals emitted by the popup, which is unfortunate because it would have meant
+    minimal changes and minimal code in what is currently the NewTalkWidget class. I'll
+    investigate further to see if there's a simple solution.
+    </p>
+    <p>
+    I also spoke to one of the mentors for clarification on separating the recording logic from
+    the Presentation class. I hadn't realized this initially, but the intent was to remove all
+    (or as many) instances of Presentation from the Multimedia class, which handles the recordings.
+    I found that these instances were being used only to generate filenames and to prepare metadata,
+    so it seems like these steps can be performed by the RecordingController instead.
+    </p>
+    <p>
+    In the coming week, I hope to finish the New Talk popup, and completely separating Presentation
+    from Multimedia. I also want to start on my changes for the Recording Tool UI.
+    </p>
+  </div>
+</body>
+</html>
