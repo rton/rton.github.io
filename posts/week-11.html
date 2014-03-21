@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/stylesheets/post.css" />
+  <title>Richard Ton's Blog</title>
+</head>
+<body>
+  <h1><a id="home" href="/">Home</a></h1>
+  <h3 id="week">March 17 - March 23</h3>
+  <div id="post">
+    <p>
+    This week I implemented the new features for the Talk Editor that were decided on last week (saving
+    changes to existing talks using the Save Talk button, and displaying a popup for adding talks,
+    #521 and #523 respectively). I may try to organize the code for the popup a little better in
+    the coming week, but it works as it should, and the Talk Editor refreshes the table when a
+    new talk has been added.
+    </p>
+    <p>
+    I also moved the logic for preparing metadata and creating a filename from the Multimedia
+    class to the RecordingController class. This removed all instances of Presentation from
+    Multimedia, as required by #444. I also disabled the Record button when no presentations are
+    selected, which indicates an empty talk database. However, the build failed so I will need to
+    amend that in the coming week. I will also need to work on the changes for the Recording Tool
+    UI. This mainly involves having a dialog appear requesting a filename for a recording that is
+    not associated with any presentation. It will appear when the 'Record to File' menubar option
+    is selected, and, ideally, will have a confirmation and cancellation button ('Record' and
+    'Cancel', perhaps).
+    </p>
+  </div>
+</body>
+</html>
